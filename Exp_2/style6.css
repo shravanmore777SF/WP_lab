@@ -1,0 +1,150 @@
+/* --- Cinematic Background (Wooden Desk) --- */
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2d241e; /* Dark wood base */
+    background-image: 
+        repeating-linear-gradient(45deg, rgba(0,0,0,0.05) 0px, rgba(0,0,0,0.05) 2px, transparent 2px, transparent 4px),
+        radial-gradient(circle at center, #3e3228 0%, #1a1511 100%);
+    font-family: 'Courier Prime', 'Courier New', monospace; /* Typewriter font */
+}
+
+/* --- The Document (Main Container) --- */
+/* User Stories: 1, 2, 3, 5, 6 */
+#email {
+    background-color: #fdfbf7; /* Aged paper color */
+    color: #1a1a1a; /* Typewriter ink color */
+    
+    /* Req 2 & 4: Width 500px */
+    width: 500px;
+    
+    /* Req 2: Padding 50px */
+    padding: 50px;
+    
+    /* Req 2: Top Margin 50px (and auto for centering) */
+    margin: 50px auto;
+    
+    /* Req 2: Border 2px */
+    border: 2px solid #d3d3d3; 
+    
+    /* Req 6: Border Box (Essential for strict width calc) */
+    box-sizing: border-box;
+
+    /* Cinematic touches */
+    box-shadow: 
+        0 1px 4px rgba(0,0,0,0.05), 
+        0 10px 30px rgba(0,0,0,0.4); /* Paper lift shadow */
+    position: relative;
+}
+
+/* Paper texture overlay (Optional cosmetic) */
+#email::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* --- The Stamps --- */
+/* User Stories: 4, 5, 6, 7, 8, 9, 13, 14, 15, 16, 17, 18, 19, 20 */
+
+.stamp-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+#confidential, #top-secret {
+    /* Req 5: Inline Block */
+    display: inline-block;
+    
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #c0392b; /* Red stamp ink */
+    text-transform: uppercase;
+    font-family: 'Impact', sans-serif; /* Stamp font */
+    letter-spacing: 2px;
+    
+    /* Req 6 & 15/16: Border */
+    border: 4px solid #c0392b;
+    border-radius: 4px;
+    
+    /* Req 6 & 11/12: Padding */
+    padding: 8px 12px;
+    
+    /* Req 6 & 13/14: Left Margin */
+    margin-left: 10px;
+
+    /* Ink bleed effect */
+    opacity: 0.8;
+    mix-blend-mode: multiply;
+}
+
+/* Req 9 & 19: Rotation Transform */
+#confidential {
+    transform: rotate(-15deg);
+    /* Grunge border style */
+    border-style: double; 
+}
+
+/* Req 9 & 20: Rotation Transform */
+#top-secret {
+    transform: rotate(10deg);
+    border-style: dashed;
+    font-size: 1rem;
+}
+
+/* --- Typography --- */
+p {
+    position: relative; /* Brings text above paper texture */
+    z-index: 1;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.header-info p {
+    margin-bottom: 0.5rem;
+}
+
+hr {
+    border: 0;
+    border-top: 1px dashed #999;
+    margin: 1.5rem 0;
+}
+
+.signature {
+    margin-top: 3rem;
+    font-style: italic;
+}
+
+/* --- The Redaction Effect --- */
+/* User Stories: 11, 12, 22, 23, 24 */
+
+.blurred {
+    /* Req 12 & 24: Filter Blur 3px */
+    filter: blur(3px);
+    
+    background-color: #1a1a1a; /* Black marker redaction */
+    color: #1a1a1a; /* Hide text color */
+    padding: 0 4px;
+    border-radius: 2px;
+    user-select: none; /* Prevent user from highlighting/reading */
+    
+    /* Interaction: Hover to try and "peek" (adds interactivity) */
+    transition: filter 0.5s ease;
+    cursor: not-allowed;
+}
+
+/* Optional: Make it look even more secure - un-blur slightly on hover? 
+   Or keep it strictly blurred as per requirements. I will leave it strict. */

@@ -1,0 +1,246 @@
+/* --- Reset & Variables --- */
+:root {
+    --bg-dark: #0a192f;
+    --bg-card: #112240;
+    --text-primary: #ccd6f6;
+    --text-secondary: #8892b0;
+    --accent: #64ffda;
+    --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --nav-height: 80px;
+}
+
+html {
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-main);
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+/* --- Req 6, 11, 12: Navbar Styling --- */
+#navbar {
+    position: fixed; /* Must be fixed to top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--nav-height);
+    background: rgba(10, 25, 47, 0.95);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 40px;
+    z-index: 1000;
+    box-shadow: 0 10px 30px -10px rgba(2,12,27,0.7);
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 30px;
+}
+
+.nav-list a {
+    text-decoration: none;
+    color: var(--text-primary);
+    font-family: monospace; /* Coding font style */
+    font-size: 14px;
+}
+
+.nav-list a:hover {
+    color: var(--accent);
+}
+
+/* --- Req 1, 10: Welcome Section --- */
+#welcome-section {
+    height: 100vh; /* Equals viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 100px; /* Large padding for desktop */
+}
+
+.mono-text {
+    color: var(--accent);
+    font-family: monospace;
+    margin: 0 0 20px 0;
+}
+
+#welcome-section h1 {
+    font-size: 60px;
+    margin: 0;
+    line-height: 1.1;
+    color: #e6f1ff;
+}
+
+.subtitle {
+    color: var(--text-secondary) !important;
+}
+
+.bio {
+    max-width: 500px;
+    margin-top: 20px;
+    color: var(--text-secondary);
+}
+
+/* --- Req 3, 4, 5: Projects Section --- */
+#project-section {
+    padding: 100px;
+    background: var(--bg-dark);
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    font-size: 26px;
+    color: #e6f1ff;
+    margin-bottom: 40px;
+}
+
+.section-header::after {
+    content: "";
+    display: block;
+    width: 300px;
+    height: 1px;
+    background: #233554;
+    margin-left: 20px;
+}
+
+.projects-grid {
+    display: grid;
+    /* 3 Column Grid on Desktop */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 25px;
+}
+
+/* Individual Project Card */
+.project-tile {
+    background-color: var(--bg-card);
+    border-radius: 4px;
+    padding: 0;
+    transition: transform 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-tile:hover {
+    transform: translateY(-7px);
+}
+
+/* Decorative "Browser Window" Header */
+.tile-header {
+    background: #081121;
+    padding: 10px 15px;
+    display: flex;
+    gap: 8px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+.red { background: #ff5f56; }
+.yellow { background: #ffbd2e; }
+.green { background: #27c93f; }
+
+.tile-content {
+    padding: 25px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.tile-content h3 {
+    color: #e6f1ff;
+    margin: 0 0 10px 0;
+}
+
+.tile-content p {
+    color: var(--text-secondary);
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.tech-stack {
+    margin-top: auto; /* Push to bottom */
+    margin-bottom: 20px;
+    display: flex;
+    gap: 15px;
+    font-family: monospace;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.project-link {
+    text-decoration: none;
+    color: var(--accent);
+    font-family: monospace;
+    font-size: 14px;
+}
+
+/* --- Contact & Footer --- */
+#contact {
+    text-align: center;
+    padding: 100px 20px;
+    margin-bottom: 50px;
+}
+
+#contact h2 {
+    font-size: 40px;
+    color: #e6f1ff;
+}
+
+.btn-primary {
+    color: var(--accent);
+    background-color: transparent;
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    padding: 1.25rem 1.75rem;
+    font-size: 14px;
+    font-family: monospace;
+    cursor: pointer;
+    margin-top: 50px;
+    transition: 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: rgba(100, 255, 218, 0.1);
+}
+
+/* --- Req 9 & 11: Media Query --- */
+@media (max-width: 768px) {
+    /* Adjust welcome padding */
+    #welcome-section {
+        padding: 0 40px;
+    }
+    
+    #welcome-section h1 {
+        font-size: 40px;
+    }
+    
+    #project-section {
+        padding: 60px 20px;
+    }
+
+    /* Change Grid to 1 Column on mobile */
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-header::after {
+        width: 100px;
+    }
+}

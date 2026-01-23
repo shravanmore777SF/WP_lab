@@ -1,0 +1,45 @@
+/* Body background */
+body {
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 40px;
+}
+
+/* Grid container */
+.color-grid {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Base box styling */
+.color-box {
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+}
+
+/* Hex color */
+.color1 {
+  background-color: #3498db;
+}
+
+/* RGB color */
+.color2 {
+  background-color: rgb(231, 76, 60);
+}
+
+/* Predefined color */
+.color3 {
+  background-color: green;
+}
+
+/* HSL color */
+.color4 {
+  background-color: hsl(45, 100%, 50%);
+}
+
+/* Any valid background color */
+.color5 {
+  background-color: purple;
+}
