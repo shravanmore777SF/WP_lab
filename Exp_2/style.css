@@ -1,13 +1,27 @@
-/* --- 1. Variables & Reset --- */
+/* --- 1. SAFE PALETTE (No Red/Magenta) --- */
 :root {
-    --bg-dark: #0a0a16;
-    --primary: #7c3aed; /* Violet */
-    --secondary: #2563eb; /* Blue */
-    --text-white: #ffffff;
-    --text-gray: #a1a1aa;
-    --glass-bg: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
+    /* THEME STRATEGY: 
+       We use a "Cool" palette. 
+       Cyan uses only Cyan ink. 
+       Blue uses Cyan + Blue ink. 
+       We avoid Purple, Orange, Pink, and Red.
+    */
+    --bg-paper: #f0f4f8;        /* Very light blue-grey (Paper friendly) */
+    --bg-card: #ffffff;         /* Pure white */
+    
+    --ink-black: #1e293b;       /* Slate 900 (Softer than pure black) */
+    --ink-gray: #475569;        /* Slate 600 */
+    
+    --primary: #0891b2;         /* Cyan 600 (The Hero Color) */
+    --primary-dim: #cffafe;     /* Cyan 100 (For backgrounds) */
+    
+    --secondary: #2563eb;       /* Royal Blue */
+    --border-color: #cbd5e1;    /* Light gray lines */
+    
     --font-main: 'Outfit', sans-serif;
+    
+    /* "Hard Shadow" variable for that pop-out 3D effect without blur */
+    --shadow-hard: 4px 4px 0px var(--ink-black);
 }
 
 * {
@@ -18,315 +32,318 @@
 
 body {
     font-family: var(--font-main);
-    background-color: var(--bg-dark);
-    color: var(--text-white);
+    background-color: var(--bg-paper);
+    color: var(--ink-black);
     line-height: 1.6;
-    overflow-x: hidden; /* Prevent side scrolling */
+    
+    /* DESIGN TRICK: Dot Grid Background 
+       Looks "Techy" on screen, uses tiny dots of ink on paper */
+    background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
+    background-size: 20px 20px;
 }
 
-/* Smooth Scrolling */
-html {
-    scroll-behavior: smooth;
-}
-
-/* --- 2. Background Blobs (The Glow Effect) --- */
-.blob {
-    position: fixed;
-    border-radius: 50%;
-    filter: blur(80px);
-    z-index: -1;
-    opacity: 0.6;
-}
-
-.blob-1 {
-    top: -100px;
-    left: -100px;
-    width: 400px;
-    height: 400px;
-    background: var(--primary);
-}
-
-.blob-2 {
-    bottom: -100px;
-    right: -100px;
-    width: 500px;
-    height: 500px;
-    background: var(--secondary);
-}
-
-/* --- 3. Navigation --- */
+/* --- 2. Navigation --- */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.2rem 8%;
-    position: fixed;
-    width: 100%;
+    padding: 1rem 8%;
+    background: rgba(255, 255, 255, 0.9); /* White glass */
+    backdrop-filter: blur(8px);
+    border-bottom: 2px solid var(--ink-black);
+    position: sticky;
     top: 0;
     z-index: 1000;
-    backdrop-filter: blur(10px); /* Frosted glass nav */
-    background: rgba(10, 10, 22, 0.8);
-    border-bottom: 1px solid var(--glass-border);
 }
 
 .logo {
-    font-size: 1.8rem;
-    font-weight: 700;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: var(--ink-black);
+    text-transform: uppercase;
 }
 
-.dot { color: var(--primary); }
+.dot { color: var(--primary); font-size: 2rem; line-height: 0; }
 
 .nav-links {
     display: flex;
-    gap: 2.5rem;
+    gap: 2rem;
     list-style: none;
 }
 
 .nav-links a {
     text-decoration: none;
-    color: var(--text-white);
-    font-weight: 500;
-    transition: 0.3s;
+    color: var(--ink-black);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    position: relative;
 }
 
-.nav-links a:hover {
-    color: var(--primary);
+/* Hover underline animation (Cyan) */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--primary);
+    transition: width 0.3s;
 }
 
-/* --- 4. Hero Section --- */
+.nav-links a:hover::after { width: 100%; }
+
+/* --- 3. Hero Section --- */
 .hero {
-    height: 100vh;
+    min-height: 80vh; /* Reduced from 100vh for better print fit */
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding-top: 60px;
+    padding: 4rem 1rem;
 }
 
 .greeting {
-    font-size: 1.2rem;
-    color: var(--text-gray);
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    font-family: monospace;
+    color: var(--secondary);
+    background: var(--primary-dim);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 700;
+    border: 1px solid var(--primary);
+    margin-bottom: 1.5rem;
+    display: inline-block;
 }
 
 .hero h1 {
-    font-size: 4.5rem;
-    margin: 10px 0;
+    font-size: 4rem;
     line-height: 1.1;
+    color: var(--ink-black);
+    margin-bottom: 1rem;
 }
 
+/* Highlighting text with a "Marker" effect instead of gradient text */
 .gradient-text {
-    background: linear-gradient(to right, var(--secondary), var(--primary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    background: linear-gradient(120deg, transparent 60%, var(--primary-dim) 60%);
+    background-size: 100% 40%;
+    background-repeat: no-repeat;
+    background-position: 0 85%;
+    color: var(--ink-black);
 }
 
 .subtitle {
-    font-size: 1.5rem;
-    color: var(--text-gray);
+    font-size: 1.25rem;
+    color: var(--ink-gray);
+    max-width: 600px;
     margin-bottom: 2.5rem;
 }
 
-/* Buttons */
+/* --- 4. Buttons (Neo-Brutalism Style) --- */
 .hero-btns {
     display: flex;
     gap: 1.5rem;
-    justify-content: center;
 }
 
 .btn {
-    padding: 0.9rem 2.5rem;
-    border-radius: 50px;
+    padding: 0.8rem 2rem;
     text-decoration: none;
-    font-weight: 600;
-    transition: 0.3s;
+    font-weight: 700;
+    font-size: 1rem;
+    border: 2px solid var(--ink-black);
+    transition: 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
+/* Primary Button: Cyan background */
 .btn-primary {
     background: var(--primary);
     color: white;
-    box-shadow: 0 0 20px rgba(124, 58, 237, 0.4);
+    box-shadow: var(--shadow-hard);
 }
 
-.btn-primary:hover { transform: translateY(-3px); background: #6d28d9; }
+.btn-primary:hover {
+    transform: translate(2px, 2px); /* Moves down-right */
+    box-shadow: 2px 2px 0px var(--ink-black); /* Shadow gets smaller */
+}
 
+/* Secondary Button: White background */
 .btn-secondary {
-    background: transparent;
-    border: 2px solid var(--glass-border);
-    color: white;
+    background: white;
+    color: var(--ink-black);
+    box-shadow: var(--shadow-hard);
 }
 
-.btn-secondary:hover { border-color: var(--primary); }
-
-/* --- 5. Glassmorphism Utilities --- */
-.section { padding: 6rem 10%; }
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
+.btn-secondary:hover {
+    background: var(--primary-dim);
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px var(--ink-black);
 }
 
-.glass-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--glass-border);
-    border-radius: 20px;
-    padding: 2.5rem;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-}
+/* --- 5. Sections & Cards --- */
+.section { padding: 5rem 10%; }
+.container { max-width: 1100px; margin: 0 auto; }
 
 .section-title {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-.section-title.center { text-align: center; margin-bottom: 3rem; }
+/* Underline decoration for titles */
+.section-title::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 15px;
+    background: var(--primary-dim);
+    bottom: 5px;
+    z-index: -1;
+    transform: skewX(-20deg);
+}
 
-/* --- 6. About Section --- */
+/* About Section */
 .about-wrapper {
     display: flex;
+    gap: 4rem;
     align-items: center;
-    gap: 3rem;
-    flex-wrap: wrap;
-}
-
-.image-wrapper {
-    flex: 1;
-    display: flex;
-    justify-content: center;
 }
 
 .profile-img {
-    width: 250px;
-    height: 250px;
-    border-radius: 20px;
+    width: 280px;
+    height: 280px;
     object-fit: cover;
-    border: 2px solid var(--glass-border);
-    transition: 0.4s;
+    border: 3px solid var(--ink-black);
+    box-shadow: var(--shadow-hard); /* Hard shadow makes it pop */
+    border-radius: 0; /* Square borders look more technical */
 }
 
-.profile-img:hover {
-    transform: scale(1.02);
-    box-shadow: 0 0 30px rgba(124, 58, 237, 0.3);
-}
+.about-text p { font-size: 1.1rem; color: var(--ink-gray); margin-bottom: 1rem; }
+.highlight { color: var(--secondary); font-weight: 700; background: #e0f2fe; padding: 0 5px;}
 
-.about-text { flex: 2; }
-.about-text p { margin-bottom: 1rem; color: #d1d5db; font-size: 1.1rem; }
-.highlight { color: var(--primary); font-weight: bold; }
-
-/* --- 7. Education Grid --- */
+/* --- 6. Cards (Education/Skills) --- */
 .cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1px));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1px));
     gap: 2rem;
 }
 
 .card {
-    position: relative;
+    background: var(--bg-card);
+    border: 2px solid var(--ink-black);
     padding: 2rem;
+    box-shadow: var(--shadow-hard);
+    transition: 0.2s;
 }
 
-.hover-effect { transition: 0.3s; }
-.hover-effect:hover {
-    transform: translateY(-10px);
-    border-color: var(--primary);
-    background: rgba(255,255,255,0.08);
+.card:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 8px 8px 0px var(--primary); /* Cyan shadow on hover */
 }
 
 .card-icon {
     font-size: 2rem;
     color: var(--primary);
     margin-bottom: 1rem;
+    border: 2px solid var(--ink-black);
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--primary-dim);
 }
 
-.card h3 { margin-bottom: 0.5rem; }
-.institution { color: var(--secondary); font-weight: 600; }
-.date { font-size: 0.9rem; color: var(--text-gray); margin-bottom: 1rem; }
-.desc { color: #d1d5db; }
+.institution { color: var(--secondary); font-weight: 700; display: block; margin: 5px 0; }
+.date { font-family: monospace; background: var(--ink-black); color: white; padding: 2px 8px; font-size: 0.8rem; }
+.desc { margin-top: 1rem; color: var(--ink-gray); }
 
-/* --- 8. Skills Section --- */
+/* --- 7. Skills Tags --- */
 .skills-wrapper {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1.2rem;
-    padding: 3rem;
+    gap: 1rem;
 }
 
 .skill-tag {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 0.8rem 1.8rem;
-    border-radius: 50px;
-    font-size: 1rem;
+    background: white;
+    border: 2px solid var(--ink-black);
+    padding: 0.6rem 1.5rem;
+    font-weight: 600;
     display: flex;
     align-items: center;
     gap: 10px;
-    transition: 0.3s;
-    border: 1px solid transparent;
+    box-shadow: 3px 3px 0px #e2e8f0;
+    transition: 0.2s;
 }
 
-.skill-tag i { color: var(--primary); font-size: 1.2rem; }
+.skill-tag i { color: var(--secondary); }
 
 .skill-tag:hover {
-    background: rgba(124, 58, 237, 0.2);
-    border-color: var(--primary);
-    transform: scale(1.05);
+    box-shadow: 3px 3px 0px var(--primary);
+    transform: translateY(-2px);
 }
 
-/* --- 9. Contact --- */
-.contact-box {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
+/* --- 8. Contact & Footer --- */
 .social-links {
     margin-top: 2rem;
     display: flex;
     justify-content: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .social-btn {
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    border: 2px solid var(--ink-black);
+    color: var(--ink-black);
+    font-weight: 700;
     display: flex;
     align-items: center;
     gap: 10px;
-    text-decoration: none;
-    color: white;
-    padding: 0.8rem 1.5rem;
-    border-radius: 8px;
-    font-weight: 600;
-    transition: 0.3s;
+    background: white;
+    transition: 0.2s;
 }
 
-/* Specific Colors for Buttons */
-.linkedin { background: #0077b5; }
-.github { background: #333; }
-.email { background: #ea4335; }
+/* REPLACED RED BUTTON WITH BLACK/TEAL STYLE */
+.linkedin:hover { background: #0077b5; color: white; border-color: #0077b5; }
+.github:hover { background: var(--ink-black); color: white; }
+.email:hover { background: var(--primary); color: white; border-color: var(--primary); }
 
-.social-btn:hover {
-    transform: translateY(-3px);
-    filter: brightness(1.2);
-}
-
-/* --- Footer --- */
 footer {
     text-align: center;
-    padding: 2rem;
-    color: var(--text-gray);
-    font-size: 0.9rem;
-    border-top: 1px solid var(--glass-border);
-    margin-top: 2rem;
+    padding: 3rem;
+    background: var(--ink-black);
+    color: white;
+    margin-top: 4rem;
 }
 
-/* --- Responsive --- */
+/* --- 9. PRINT OPTIMIZATION --- */
+@media print {
+    body { background: white; -webkit-print-color-adjust: exact; }
+    .navbar { display: none; }
+    .hero { min-height: auto; padding-top: 2rem; }
+    .hero-btns { display: none; } /* Optional: Hide buttons on paper */
+    .section { padding: 2rem 0; page-break-inside: avoid; }
+    .card, .profile-img, .btn { box-shadow: none !important; } /* Remove heavy shadows for ink saving */
+    
+    /* Ensure links are readable */
+    a { text-decoration: underline; color: black; }
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-    .hero h1 { font-size: 3rem; }
-    .navbar { padding: 1rem; }
-    .nav-links { display: none; } /* Simplified for mobile */
-    .about-wrapper { flex-direction: column; text-align: center; }
-    .section { padding: 4rem 5%; }
+    .hero h1 { font-size: 2.5rem; }
+    .about-wrapper { flex-direction: column; }
+    .nav-links { display: none; }
+    .section { padding: 3rem 5%; }
 }
