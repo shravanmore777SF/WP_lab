@@ -1,9 +1,10 @@
 /* --- RESET & VARIABLES --- */
 :root {
-    --primary-color: #00d2d3; /* Cyan Accent */
-    --bg-color: #1e1e1e; /* Dark Grey */
-    --card-bg: #2d2d2d;
-    --text-color: #f1f2f6;
+    /* Changed to Deep Teal - distinct, professional, and definitely not red */
+    --primary-color: #006064; 
+    --bg-color: #ffffff;      /* White background for printing */
+    --card-bg: #f5f5f5;       /* Very light grey for card separation */
+    --text-color: #222222;    /* Dark text for high contrast */
     --header-height: 75px;
 }
 
@@ -21,20 +22,21 @@ body {
 }
 
 /* --- HEADER & NAV (Fixed) --- */
-/* US 13, 23, 25: Fixed header using Flexbox */
 #header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: var(--header-height);
-    background-color: rgba(30, 30, 30, 0.95);
-    display: flex; /* Flexbox usage */
+    background-color: #ffffff; /* White header */
+    display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 40px;
     z-index: 1000;
-    border-bottom: 2px solid var(--primary-color);
+    border-bottom: 3px solid var(--primary-color);
+    /* Adding a light shadow for separation instead of dark color */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
 }
 
 .logo-container {
@@ -46,7 +48,8 @@ body {
 #header-img {
     height: 40px;
     width: auto;
-    filter: invert(1); /* Make black icon white */
+    /* REMOVED filter: invert(1); so the icon stays black/dark */
+    opacity: 0.8; 
 }
 
 .brand-name {
@@ -54,6 +57,7 @@ body {
     font-size: 1.5rem;
     letter-spacing: 2px;
     color: var(--primary-color);
+    font-weight: 700;
 }
 
 #nav-bar {
@@ -72,10 +76,10 @@ body {
 
 .nav-link:hover {
     color: var(--primary-color);
+    text-decoration: underline;
 }
 
 /* --- MAIN CONTAINER --- */
-/* Pushing content down so it's not hidden behind fixed header */
 .container {
     margin-top: var(--header-height);
     display: flex;
@@ -94,6 +98,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     font-size: 3rem;
     margin-bottom: 20px;
+    color: #000;
 }
 
 #form {
@@ -108,26 +113,29 @@ body {
     padding: 12px;
     width: 300px;
     border-radius: 5px;
-    border: none;
+    /* Added a solid border so the input is visible on white paper */
+    border: 2px solid #ccc;
     font-size: 1rem;
+    background-color: #fff;
+    color: #333;
 }
 
 #submit {
     padding: 12px 25px;
     background-color: var(--primary-color);
-    color: #000;
+    color: #ffffff;
     border: none;
     font-weight: bold;
     cursor: pointer;
     border-radius: 5px;
     text-transform: uppercase;
     font-size: 1rem;
-    transition: transform 0.2s, background-color 0.2s;
+    transition: transform 0.2s, opacity 0.2s;
 }
 
 #submit:hover {
     transform: scale(1.05);
-    background-color: #fff;
+    opacity: 0.9;
 }
 
 /* --- FEATURES --- */
@@ -153,6 +161,7 @@ body {
 .desc h2 {
     font-family: 'Montserrat', sans-serif;
     margin-bottom: 10px;
+    color: #000;
 }
 
 /* --- VIDEO --- */
@@ -166,6 +175,7 @@ body {
 #how-it-works h2 {
     margin-bottom: 30px;
     font-family: 'Montserrat', sans-serif;
+    color: #000;
 }
 
 .video-container {
@@ -176,11 +186,10 @@ body {
 #video {
     width: 100%;
     max-width: 600px;
-    border: 2px solid #333;
+    border: 5px solid #eee; /* Light border for video */
 }
 
 /* --- PRICING --- */
-/* US 15: Flexbox usage */
 #pricing {
     display: flex;
     justify-content: center;
@@ -193,7 +202,8 @@ body {
 
 .product-card {
     background-color: var(--card-bg);
-    border: 1px solid #444;
+    /* Darker border for print definition */
+    border: 2px solid #dddddd; 
     border-radius: 10px;
     text-align: center;
     width: 300px;
@@ -202,6 +212,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     transition: transform 0.3s;
+    color: #000;
 }
 
 .product-card:hover {
@@ -210,25 +221,32 @@ body {
 }
 
 .level {
-    background-color: #000;
+    /* Using background color here, but it's Teal (not red) */
+    background-color: #e0f7fa; /* Very light teal bg */
     color: var(--primary-color);
     padding: 10px;
     font-weight: bold;
     letter-spacing: 1px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
 }
 
 .product-card h2 {
     font-size: 2.5rem;
     margin: 20px 0;
+    color: #000;
 }
 
 .product-card ul {
     list-style: none;
     margin-bottom: 30px;
+    padding: 0 20px;
 }
 
 .product-card li {
     margin: 10px 0;
+    border-bottom: 1px solid #eee; /* Subtle separator lines */
+    padding-bottom: 5px;
 }
 
 .btn {
@@ -237,7 +255,7 @@ body {
     padding: 10px;
     background: transparent;
     border: 2px solid var(--primary-color);
-    color: white;
+    color: var(--primary-color);
     font-weight: bold;
     cursor: pointer;
     border-radius: 5px;
@@ -245,21 +263,22 @@ body {
 
 .btn:hover {
     background-color: var(--primary-color);
-    color: black;
+    color: #fff;
 }
 
 /* --- FOOTER --- */
 footer {
-    background-color: #000;
+    /* Removed black background to save ink */
+    background-color: #f9f9f9; 
     width: 100%;
     padding: 20px;
     text-align: center;
-    color: #777;
+    color: #555;
     margin-top: 50px;
+    border-top: 1px solid #ddd;
 }
 
 /* --- MEDIA QUERY --- */
-/* US 14, 24: At least one media query */
 @media (max-width: 650px) {
     #header {
         flex-direction: column;
@@ -276,7 +295,6 @@ footer {
     }
 
     .container {
-        /* Adjust margin since header height changes on mobile */
         margin-top: 130px; 
     }
     
