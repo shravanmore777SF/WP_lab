@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Exp 6</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Personal Portfolio</h1>
+            <button id="themeToggle">Toggle Dark Mode</button>
+        </header>
+
+        <section id="contact">
+            <h2>Contact Me</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="email" id="email" placeholder="example@mail.com">
+                    <small class="error" id="emailError"></small> </div>
+
+                <div class="form-group">
+                    <label>Phone Number:</label>
+                    <input type="text" id="phone" placeholder="10-digit number">
+                    <small class="error" id="phoneError"></small>
+                </div>
+
+                <div class="form-group">
+                    <label>Password:</label>
+                    <input type="password" id="password" placeholder="At least 6 characters">
+                    <small class="error" id="passwordError"></small>
+                </div>
+
+                <button type="submit">Submit Data</button>
+            </form>
+        </section>
+
+        <section id="displayData">
+            <h3>Stored Information:</h3>
+            <p id="savedInfo">No data stored yet.</p>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
