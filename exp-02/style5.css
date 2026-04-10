@@ -1,0 +1,183 @@
+/* --- Variables & Reset --- */
+:root {
+    --primary: #6c5ce7;
+    --secondary: #00cec9;
+    --text-main: #ffffff;
+    --text-muted: rgba(255, 255, 255, 0.7);
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --checkbox-border: rgba(255, 255, 255, 0.5);
+    --checked-bg: #00b894;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: #09090b;
+    /* Dark Deep Gradient */
+    background: linear-gradient(135deg, #09090b 0%, #1c1c24 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+/* --- Background Animation (Blobs) --- */
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -1;
+    animation: float 10s infinite alternate;
+}
+
+.blob-1 {
+    top: 10%;
+    left: 20%;
+    width: 300px;
+    height: 300px;
+    background: #6c5ce7;
+    opacity: 0.4;
+}
+
+.blob-2 {
+    bottom: 10%;
+    right: 20%;
+    width: 250px;
+    height: 250px;
+    background: #00cec9;
+    opacity: 0.3;
+    animation-delay: -5s;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(40px, -40px); }
+}
+
+main {
+    width: 100%;
+    max-width: 800px;
+    padding: 2rem;
+    z-index: 1;
+}
+
+/* --- Requirements: H1 Styling --- */
+h1 {
+    text-align: center;
+    color: var(--text-main);
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+/* --- Requirements: Container --- */
+.feature-card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+/* --- Requirements: Feature Card (Label) --- */
+.feature-card {
+    /* Glassmorphism Card Style */
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    
+    padding: 1.5rem;
+    border-radius: 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Text styling inside the label */
+.card-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title {
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+}
+
+.card-desc {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+/* --- TECHNICAL REQUIREMENTS: Checkbox Selector --- */
+input[type="checkbox"] {
+    /* Req 5.1: Appearance None */
+    appearance: none;
+    -webkit-appearance: none;
+    
+    /* Req 5.2: Border Width, Color, Style */
+    border: 2px solid var(--checkbox-border);
+    border-radius: 6px;
+    
+    /* Sizing & Layout */
+    width: 24px;
+    height: 24px;
+    margin: 0;
+    cursor: pointer;
+    background-color: transparent;
+    
+    /* Flexbox to center the checkmark */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* --- Requirements: Checkmark Display --- */
+/* We use ::before on the input itself to render the character */
+input[type="checkbox"]::before {
+    /* Req 6: Display checkmark ✓ */
+    content: "✓"; 
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    
+    /* Initial state: Hidden/Scaled down */
+    transform: scale(0);
+    transition: transform 0.2s ease-in-out;
+}
+
+/* --- Requirements: Checked States --- */
+
+/* Req 7 & 8: Change Background & Border on Check */
+input[type="checkbox"]:checked {
+    background-color: var(--checked-bg);
+    border-color: var(--checked-bg);
+    box-shadow: 0 0 15px var(--checked-bg); /* Add a neon glow */
+}
+
+/* Animate the checkmark in */
+input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
+
+/* Optional: Highlight the whole card when selected */
+.feature-card:has(input:checked) {
+    border-color: var(--checked-bg);
+    background: rgba(0, 184, 148, 0.1);
+}

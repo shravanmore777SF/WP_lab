@@ -1,0 +1,190 @@
+/* --- Base Reset & Typography --- */
+:root {
+    --glass-bg: rgba(255, 255, 255, 0.25);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    
+    --text-primary: #1e272e;
+    --text-secondary: #485460;
+    
+    /* Strict Link Colors */
+    --link-unvisited: #0044ff;      /* Electric Blue */
+    --link-visited: #575fcf;        /* Deep Violet */
+    --link-hover: #ff3f34;          /* Vivid Red */
+    --link-active: #0fb9b1;         /* Teal */
+    --link-focus-outline: #ffa801;  /* Gold */
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: #0f0c29;  /* Fallback */
+    /* Deep gradient background */
+    background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    overflow: hidden; /* Prevents scrollbars from moving shapes */
+}
+
+/* --- Background Floating Shapes --- */
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -1;
+    animation: float 10s infinite alternate;
+}
+
+.shape-1 {
+    height: 300px;
+    width: 300px;
+    background: #ff00cc;
+    top: -50px;
+    left: -50px;
+}
+
+.shape-2 {
+    height: 350px;
+    width: 350px;
+    background: #3333ff;
+    bottom: -80px;
+    right: -50px;
+    animation-delay: -5s;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(30px, 50px); }
+}
+
+/* --- Glass Container --- */
+.container {
+    width: 100%;
+    max-width: 480px;
+    padding: 2.5rem;
+    
+    /* THE GLASS EFFECT */
+    background: var(--glass-bg);
+    box-shadow: var(--glass-shadow);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); /* Safari support */
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    
+    animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    margin: 0 0 1.5rem 0;
+    color: white;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    letter-spacing: 1px;
+}
+
+/* --- List Styles --- */
+ul.todo-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Glass Cards for Items */
+ul.todo-list > li {
+    background: rgba(255, 255, 255, 0.6); /* Higher opacity for readability */
+    margin-bottom: 1rem;
+    padding: 1.25rem;
+    border-radius: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+ul.todo-list > li:hover {
+    transform: translateX(5px);
+    background: rgba(255, 255, 255, 0.85);
+}
+
+/* --- Input & Labels --- */
+input[type="checkbox"] {
+    accent-color: #302b63; /* Matches background */
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+label {
+    flex: 1;
+    font-weight: 600;
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 1.05rem;
+}
+
+input[type="checkbox"]:checked + label {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+/* --- Sub-Item (Link) Formatting --- */
+ul.sub-item {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0 2.2rem;
+    width: 100%;
+}
+
+ul.sub-item li {
+    font-size: 0.9rem;
+}
+
+/* --- STRICT LINK RULES --- */
+
+/* 1. No decoration */
+a.sub-item-link {
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* 2. Unvisited */
+a.sub-item-link:link {
+    color: var(--link-unvisited);
+}
+
+/* 3. Visited */
+a.sub-item-link:visited {
+    color: var(--link-visited);
+}
+
+/* 4. Hover */
+a.sub-item-link:hover {
+    color: var(--link-hover);
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* 5. Focus (Must have outline) */
+a.sub-item-link:focus {
+    outline: 3px dashed var(--link-focus-outline);
+    outline-offset: 3px;
+    background: white;
+}
+
+/* 6. Active (Clicked) */
+a.sub-item-link:active {
+    color: var(--link-active);
+    transform: scale(0.95);
+}

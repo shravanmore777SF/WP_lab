@@ -1,0 +1,123 @@
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #eef3ff, #f9fbff);
+  padding: 40px;
+}
+
+.container {
+  max-width: 520px;
+  margin: auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: 600;
+  display: block;
+  margin-top: 12px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+/* First input */
+input:first-of-type {
+  border-radius: 20px;
+}
+
+/* Focus */
+input:focus, select:focus, textarea:focus {
+  border-color: #4f7cff;
+}
+
+/* Invalid */
+input:invalid, select:invalid, textarea:invalid {
+  border-color: red;
+}
+
+/* Valid */
+input:valid, select:valid, textarea:valid {
+  border-color: green;
+}
+
+/* RADIO GROUP FIX */
+.radio-group {
+  margin-top: 20px;
+  padding: 16px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+/* Remove default radio */
+.radio-option input[type="radio"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #999;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Checked radio */
+.radio-option input[type="radio"]:checked {
+  border-color: #4f7cff;
+  background-color: #4f7cff;
+  box-shadow: 0 0 6px rgba(79,124,255,0.8);
+}
+
+/* Checked label text */
+.radio-option input[type="radio"]:checked + span {
+  color: #4f7cff;
+  font-weight: 700;
+}
+
+/* Textarea */
+textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+/* Button */
+button {
+  width: 100%;
+  margin-top: 24px;
+  padding: 14px;
+  background: #4f7cff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #3a63e6;
+}
+
