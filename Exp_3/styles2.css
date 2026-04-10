@@ -1,0 +1,102 @@
+/* General Page Styling */
+body {
+    margin: 0;
+    padding: 0;
+    background: radial-gradient(circle, #35654d 0%, #1e3b2e 100%);
+    font-family: 'Playfair Display', serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- Container Layout --- */
+#playing-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+/* --- Card Styling --- */
+.card {
+    width: 240px;
+    height: 336px;
+    background-color: #fff;
+    border-radius: 15px;
+    
+    /* Base Shadow */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3), inset 0 0 5px rgba(0,0,0,0.1);
+    
+    padding: 15px;
+    box-sizing: border-box;
+    font-weight: bold;
+    font-size: 24px;
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+
+    /* --- NEW ANIMATION PROPERTIES --- */
+    /* Smoothly transition transform and box-shadow over 0.3 seconds */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer; /* Changes cursor to hand icon */
+}
+
+/* --- NEW HOVER EFFECT --- */
+.card:hover {
+    /* Moves the card UP by 20 pixels */
+    transform: translateY(-20px); 
+    
+    /* Makes the shadow larger and blurrier to simulate height */
+    box-shadow: 0 30px 50px rgba(0,0,0,0.5), inset 0 0 5px rgba(0,0,0,0.1);
+}
+
+/* Color Utilities */
+.red { color: #d32f2f; }
+.black { color: #212121; }
+
+/* --- Internal Sections --- */
+.left, .right {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    width: 30px; 
+    line-height: 1;
+}
+
+.left {
+    align-self: flex-start;
+}
+
+.right {
+    align-self: flex-end;
+    transform: rotate(180deg);
+}
+
+.middle {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+/* --- Specific Content Styling --- */
+.big-symbol { font-size: 100px; }
+
+.face-art {
+    font-size: 120px;
+    border: 2px solid #d32f2f;
+    border-radius: 10px;
+    padding: 0 15px;
+    background-color: rgba(211, 47, 47, 0.05);
+}
+
+.pip {
+    font-size: 40px;
+    line-height: 0.8;
+}

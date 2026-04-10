@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+:root {
+  --primary: #2563eb;
+  --bg-color: #f8fafc;
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --font-family: 'Inter', sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background: var(--bg-color);
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+.App {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.main-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.main-header h1 {
+  font-size: 2.5rem;
+  margin: 0;
+  color: #0f172a;
+}
+
+.main-header p {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+
+/* User Directory Styling */
+.container h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #334155;
+}
+
+/* IMPORTANT: Step 4 Styling Enhancement - CSS Grid */
+.user-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.user-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.user-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.user-card h3 {
+  margin-top: 0;
+  color: var(--primary);
+  font-size: 1.25rem;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.user-card p {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+  color: #475569;
+}
+
+.user-card strong {
+  color: #334155;
+  font-weight: 600;
+}
+
+/* Status States */
+.loading-container, .error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+}
+
+.loading, .error {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+.error { color: #dc2626; }
+
+.meme-cat-img {
+  width: 250px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.main-footer {
+  margin-top: 4rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}

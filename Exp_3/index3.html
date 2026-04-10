@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox Technical Documentation</title>
+    <link rel="stylesheet" href="styles3.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&family=Source+Code+Pro&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav id="navbar">
+        <header>Flexbox Guide</header>
+        
+        <a class="nav-link" href="#Introduction">Introduction</a>
+        <a class="nav-link" href="#The_Flex_Container">The Flex Container</a>
+        <a class="nav-link" href="#Flex_Direction">Flex Direction</a>
+        <a class="nav-link" href="#Justify_Content">Justify Content</a>
+        <a class="nav-link" href="#Align_Items">Align Items</a>
+    </nav>
+
+    <main id="main-doc">
+
+        <section class="main-section" id="Introduction">
+            <header>Introduction</header>
+            
+            <p>The Flexible Box Module, usually referred to as flexbox, was designed as a one-dimensional layout model, and as a method that could offer space distribution between items in an interface and powerful alignment capabilities.</p>
+            
+            <p>Before the Flexbox Layout module, there were four layout modes:</p>
+            
+            <ul>
+                <li>Block, for sections in a webpage</li>
+                <li>Inline, for text</li>
+                <li>Table, for two-dimensional table data</li>
+                <li>Positioned, for explicit position of an element</li>
+            </ul>
+
+            <p>The Flexbox module makes it easier to design flexible responsive layout structure without using float or positioning.</p>
+        </section>
+
+        <section class="main-section" id="The_Flex_Container">
+            <header>The Flex Container</header>
+            
+            <p>To start using the Flexbox model, you need to first define a flex container.</p>
+            
+            <p>The parent element that holds the flex items is called the flex container. You activate it by setting the display property to flex.</p>
+
+            <div class="code-block">
+                <code>
+.container {
+  display: flex; /* or inline-flex */
+}
+                </code>
+            </div>
+
+            <p>Once you do this, the direct children of that container become "flex items".</p>
+        </section>
+
+        <section class="main-section" id="Flex_Direction">
+            <header>Flex Direction</header>
+            
+            <p>The <code>flex-direction</code> property establishes the main-axis, thus defining the direction flex items are placed in the flex container.</p>
+            
+            <p>Flexbox is a single-direction layout concept. Think of flex items as primarily laying out either in horizontal rows or vertical columns.</p>
+
+            <ul>
+                <li><strong>row</strong> (default): left to right in ltr; right to left in rtl</li>
+                <li><strong>row-reverse</strong>: right to left in ltr; left to right in rtl</li>
+                <li><strong>column</strong>: same as row but top to bottom</li>
+                <li><strong>column-reverse</strong>: same as row-reverse but bottom to top</li>
+            </ul>
+
+            <div class="code-block">
+                <code>
+.container {
+  flex-direction: row | row-reverse | column | column-reverse;
+}
+                </code>
+            </div>
+        </section>
+
+        <section class="main-section" id="Justify_Content">
+            <header>Justify Content</header>
+            
+            <p>The <code>justify-content</code> property defines how the browser distributes space between and around content items along the main-axis of a flex container.</p>
+            
+            <p>This helps distribute extra free space left over when either all the flex items on a line are inflexible, or are flexible but have reached their maximum size.</p>
+
+            <div class="code-block">
+                <code>
+.container {
+  justify-content: flex-start | flex-end | center | space-between | space-around;
+}
+                </code>
+            </div>
+            
+            <p>Common uses include centering a navigation bar or spreading cards evenly across a page section.</p>
+        </section>
+
+        <section class="main-section" id="Align_Items">
+            <header>Align Items</header>
+            
+            <p>The <code>align-items</code> property defines the default behavior for how flex items are laid out along the cross axis on the current line.</p>
+            
+            <p>Think of it as the <code>justify-content</code> version for the cross-axis (perpendicular to the main-axis).</p>
+
+            <div class="code-block">
+                <code>
+.container {
+  align-items: stretch | flex-start | flex-end | center | baseline;
+}
+                </code>
+            </div>
+
+            <p>For example, if your flex-direction is row, align-items controls vertical alignment. If your flex-direction is column, align-items controls horizontal alignment.</p>
+        </section>
+
+    </main>
+
+</body>
+</html>

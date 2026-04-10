@@ -1,0 +1,201 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #ffffff;
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .subtitle {
+            color: #f0e6ff;
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+            font-weight: 400;
+        }
+
+        .pricing-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .pricing-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 0 0 280px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .pet-icon {
+            font-size: 4rem;
+            text-align: center;
+            margin-bottom: 20px;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
+        }
+
+        .pricing-card h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .pricing-card p {
+            font-size: 2rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .features {
+            list-style: none;
+            margin-bottom: 30px;
+            flex-grow: 1;
+        }
+
+        .features li {
+            padding: 12px 0;
+            color: #555;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .features li:before {
+            content: "✓ ";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .features li:last-child {
+            border-bottom: none;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .basic-plan {
+            order: 0;
+        }
+
+        .basic-plan .pet-icon {
+            color: #FF6B6B;
+        }
+
+        .pro-plan {
+            order: 1;
+            flex-grow: 2;
+            border: 3px solid #ffd700;
+            position: relative;
+        }
+
+        .pro-plan .pet-icon {
+            color: #4ECDC4;
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: #ffd700;
+            color: #333;
+            padding: 5px 40px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            transform: rotate(45deg);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .premium-plan {
+            order: 2;
+        }
+
+        .premium-plan .pet-icon {
+            color: #95E1D3;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .pricing-card {
+                flex: 0 0 100%;
+                max-width: 400px;
+            }
+
+            .pro-plan {
+                flex-grow: 1;
+            }
+}

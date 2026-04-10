@@ -1,0 +1,158 @@
+/* General Page Styling for the "Newspaper" look */
+body {
+    background-color: #f4f1ea; /* Off-white paper color */
+    color: #2c2c2c; /* Dark grey text, softer than black */
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* --- GRID CONTAINER SETUP --- */
+
+/* US 1, 12, 17, 18, 19 */
+.newspaper-layout {
+    max-width: 1000px;
+    background-color: #fff;
+    padding: 40px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    
+    /* Step 12: Display Grid */
+    display: grid;
+
+    /* Step 17: Three equal columns */
+    grid-template-columns: 1fr 1fr 1fr;
+
+    /* Step 18: Rows - Auto first, then equal parts */
+    grid-template-rows: auto 1fr 1fr 1fr;
+
+    /* Step 19: Gap between items */
+    gap: 30px;
+
+    /* US 11 & 13-16: Defining the specific layout map */
+    grid-template-areas: 
+        "title title title"
+        "feature-article feature-article cover-image"
+        "secondary-article secondary-article cover-image"
+        "small-article1 small-article2 small-article3";
+    
+    border: 1px solid #ddd;
+}
+
+/* --- ASSIGNING GRID AREAS --- */
+/* US 10 & Steps 20-26 */
+
+.title {
+    grid-area: title;
+    text-align: center;
+    border-bottom: 3px double #333;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+
+.title h1 {
+    font-family: 'Old Standard TT', serif;
+    font-size: 3.5rem;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.date-line {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 10px;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+    padding: 5px 0;
+}
+
+.feature-article {
+    grid-area: feature-article;
+    border-right: 1px solid #ddd;
+    padding-right: 20px;
+}
+
+.feature-article h2 {
+    font-family: 'Old Standard TT', serif;
+    font-size: 2.2rem;
+    margin-top: 0;
+    line-height: 1.1;
+}
+
+.cover-image {
+    grid-area: cover-image;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* US 15 & 27: Max width for image */
+.cover-image img {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures image fills the tall grid cell cleanly */
+    filter: sepia(30%) grayscale(20%); /* Adds a vintage photo look */
+    border: 1px solid #ccc;
+    padding: 3px;
+    background: #fff;
+}
+
+.cover-image figcaption {
+    font-size: 0.8rem;
+    color: #666;
+    text-align: center;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+.secondary-article {
+    grid-area: secondary-article;
+    border-top: 1px solid #333; /* Separator from feature */
+    padding-top: 10px;
+    border-right: 1px solid #ddd;
+    padding-right: 20px;
+}
+
+.secondary-article h2 {
+    font-family: 'Old Standard TT', serif;
+    font-size: 1.8rem;
+    margin-top: 0;
+}
+
+/* Small Articles Styles */
+.small-article1 {
+    grid-area: small-article1;
+    border-top: 2px solid #333;
+    padding-top: 10px;
+}
+
+.small-article2 {
+    grid-area: small-article2;
+    border-top: 2px solid #333;
+    padding-top: 10px;
+    border-left: 1px solid #ddd; /* Vertical dividers */
+    border-right: 1px solid #ddd;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.small-article3 {
+    grid-area: small-article3;
+    border-top: 2px solid #333;
+    padding-top: 10px;
+}
+
+/* Common style for small headers */
+.small-article1 h3, 
+.small-article2 h3, 
+.small-article3 h3 {
+    font-family: 'Old Standard TT', serif;
+    margin-top: 0;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
