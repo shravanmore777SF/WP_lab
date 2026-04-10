@@ -1,0 +1,20 @@
+{
+  "name": "exp10",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server-express.js",
+    "dev": "nodemon server-express.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
